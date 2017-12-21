@@ -1,0 +1,34 @@
+<template>
+    <section>
+        <tabs :tabs="tabs" />
+        <h4>name: {{name}}</h4>
+        <p>age: {{age}}</p>
+    </section>
+</template>
+<script type="config">
+{
+    props: ['name', 'age'],
+    data: {
+        tabs: [
+            {
+                href: '/',
+                active: false,
+                label: 'home'
+            },
+            {
+                label: 'my info',
+                href: '/my/info',
+                active: true
+            },
+            {
+                label: 'my likes',
+                href: '/my/like',
+                active: false
+            }
+        ]
+    },
+    components: {
+        'tabs': '../common/component/Tabs.atom'
+    }
+}
+</script>

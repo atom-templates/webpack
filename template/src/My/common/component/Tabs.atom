@@ -1,0 +1,46 @@
+<template>
+    <ul class="navs">
+        <li a-for="tab in tabs">
+            <a
+                :class="tab.active ? 'active' : ''"
+                :href="tab.href"
+                @click="jump(tab.active, $event)">
+                {{tab.label}}
+            </a>
+        </li>
+    </ul>
+</template>
+<style>
+.navs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.navs li {
+    flex: 1 1 0;
+    text-align: center;
+}
+
+.navs li a {
+    text-decoration: none;
+}
+
+</style>
+<script type="config">
+{
+    props: ['tabs']
+}
+</script>
+<script>
+export default {
+    methods: {
+        jump(active, e) {
+            if (active) {
+                e.preventDefault();
+            }
+        }
+    }
+};
+</script>

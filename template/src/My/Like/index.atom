@@ -1,0 +1,96 @@
+<template>
+    <section>
+        <tabs :tabs="tabs" />
+        <form @submit.prevent="add" class="form">
+            <input
+                class="input"
+                autocomplete="off"
+                name="content"
+                a-model="content"
+                placeholder="input a new like" />
+        </form>
+        <ul class="like-list">
+            <li a-for="(like, index) in likes" class="like">
+                <label>{{like}}</label>
+                <button @click="remove(index)">x</button>
+            </li>
+        </ul>
+    </section>
+</template>
+<script type="config">
+{
+    props: ['likes'],
+    data: {
+        tabs: [
+            {
+                href: '/',
+                active: false,
+                label: 'home'
+            },
+            {
+                label: 'my info',
+                href: '/my/info',
+                active: false
+            },
+            {
+                label: 'my likes',
+                href: '/my/like',
+                active: true
+            }
+        ]
+    },
+    components: {
+        'tabs': '../common/component/Tabs.atom'
+    }
+}
+</script>
+<style>
+.form {
+    margin-top: 1rem;
+}
+.input {
+    width: 100%;
+    border-color: #666;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    font-size: 1.2rem;
+    height: 2rem;
+    line-height: 1;
+}
+.like-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.like {
+    display: flex;
+    margin: 0;
+    height: 3rem;
+    align-items: center;
+}
+
+.like label {
+    flex: 1 1 auto;
+    display: flex;
+}
+
+.like button {
+    flex: 0 0 auto;
+}
+</style>
+<script>
+export default {
+    data: {
+        content: ''
+    },
+    methods: {
+        add() {
+            this.likes.push(this.content);
+            this.content = '';
+        },
+        remove(index) {
+            this.likes.splice(index, 1);
+        }
+    }
+}
+</script>
